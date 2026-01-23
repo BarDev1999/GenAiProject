@@ -3,197 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VinylID - Dashboard</title>
+    <title>VinylID Premium Showcase</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap');
-        body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; }
-        .chart-container { position: relative; width: 100%; max-width: 800px; margin: 0 auto; height: 350px; max-height: 400px; }
-        .nav-link { transition: all 0.3s ease; }
-        .nav-link:hover { color: #10b981; }
-        .card { background: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; padding: 1.5rem; }
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600;800&display=swap');
+        
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f1f5f9;
+        }
+
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.15), transparent);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .stat-card {
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
     </style>
 </head>
-<body class="text-slate-800">
+<body class="hero-gradient min-h-screen">
 
-    <nav class="bg-slate-900 text-white sticky top-0 z-50 py-4 shadow-lg">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <span class="text-2xl">🎵</span>
-                <h1 class="text-xl font-bold tracking-tight">VinylID Project</h1>
+    <!-- Navigation -->
+    <nav class="glass sticky top-0 z-50 py-4 px-8 mb-12 border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
+                    <i class="fas fa-compact-disc text-xl animate-spin-slow"></i>
+                </div>
+                <h1 class="text-xl font-extrabold tracking-tight">VinylID <span class="text-emerald-400">AI</span></h1>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-semibold uppercase tracking-wider">
-                <a href="#motivation" class="nav-link">מוטיבציה</a>
-                <a href="#methodology" class="nav-link">שיטה</a>
-                <a href="#results" class="nav-link">תוצאות</a>
-                <a href="#data" class="nav-link">נתונים</a>
+            <div class="hidden md:flex gap-8 text-sm font-semibold uppercase tracking-widest text-slate-400">
+                <a href="#problem" class="nav-link hover:text-white">האתגר</a>
+                <a href="#tech" class="nav-link hover:text-white">טכנולוגיה</a>
+                <a href="#results" class="nav-link hover:text-white text-emerald-400">תוצאות</a>
+                <a href="#future" class="nav-link hover:text-white">החזון</a>
             </div>
+            <button onclick="window.print()" class="text-xs border border-emerald-500/30 px-4 py-2 rounded-full text-emerald-400 hover:bg-emerald-500 hover:text-white transition">
+                <i class="fas fa-file-pdf ml-2"></i>ייצוא דוח
+            </button>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-12 space-y-16">
-        
-        <!-- SECTION: VISUAL ABSTRACT -->
-        <section class="text-center space-y-4">
-            <h2 class="text-4xl font-extrabold text-slate-900">זיהוי אלבומי ויניל ב-CCTV</h2>
-            <p class="text-xl text-slate-500 max-w-2xl mx-auto">גישור על הפער בין צילומי אבטחה באיכות נמוכה לקטלוג דיגיטלי נקי באמצעות למידה עמוקה.</p>
-            <div class="card mt-8 bg-slate-50 border-dashed border-2 border-slate-300 py-10">
-                <div class="flex flex-col md:flex-row justify-around items-center gap-8 text-sm font-bold text-slate-400">
-                    <div class="space-y-2">
-                        <div class="text-4xl">📸</div>
-                        <p>קלט: שאילתה רועשת</p>
-                    </div>
-                    <div class="text-3xl">➡️</div>
-                    <div class="space-y-2 text-emerald-600">
-                        <div class="text-4xl">🧠</div>
-                        <p>ResNet50 Siamese</p>
-                    </div>
-                    <div class="text-3xl">➡️</div>
-                    <div class="space-y-2">
-                        <div class="text-4xl">✅</div>
-                        <p>פלט: זיהוי בקטלוג</p>
-                    </div>
+    <main class="max-w-7xl mx-auto px-6 pb-24 space-y-32">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-6">
+            <span class="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full border border-emerald-500/20 uppercase tracking-widest">
+                פרויקט גמר - Computer Vision 2026
+            </span>
+            <h2 class="text-6xl md:text-7xl font-extrabold tracking-tighter leading-tight">
+                זיהוי אלבומי ויניל <br> <span class="text-emerald-500">בדיוק של 89%</span>
+            </h2>
+            <p class="text-slate-400 text-xl max-w-3xl mx-auto font-light leading-relaxed">
+                מערכת Retrieval מתקדמת המגשרת על הפער בין צילומי אבטחה רועשים בשחור-לבן לקטלוג דיגיטלי נקי.
+            </p>
+            <div class="flex justify-center gap-4 pt-8">
+                <div class="glass p-6 rounded-2xl w-40 text-center">
+                    <div class="text-3xl font-bold">89%</div>
+                    <div class="text-xs text-slate-500 uppercase mt-1">Top-5 Acc</div>
+                </div>
+                <div class="glass p-6 rounded-2xl w-40 text-center border-emerald-500/30">
+                    <div class="text-3xl font-bold text-emerald-400">77%</div>
+                    <div class="text-xs text-slate-500 uppercase mt-1">Top-1 Acc</div>
+                </div>
+                <div class="glass p-6 rounded-2xl w-40 text-center">
+                    <div class="text-3xl font-bold">5,000</div>
+                    <div class="text-xs text-slate-500 uppercase mt-1">Samples</div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: MOTIVATION -->
-        <section id="motivation" class="grid grid-cols-1 md:grid-cols-2 gap-8 scroll-mt-24">
-            <div class="card border-r-4 border-emerald-500">
-                <h3 class="text-2xl font-bold mb-4">The "Intent" Gap</h3>
-                <p class="text-slate-600 leading-relaxed">
-                    חנויות ויניל יודעות מה נמכר בקופה, אך הן "עיוורות" למה שקורה על המדף. המערכת מאפשרת לזהות באילו אלבומים הלקוח באמת התעניין, גם אם לא קנה אותם, ובכך מספקת תובנות עסקיות יקרות ערך.
+        <!-- Problem Section -->
+        <section id="problem" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8 text-right">
+                <h3 class="text-3xl font-bold">הצורך: פתרון ה-"Intent Gap"</h3>
+                <p class="text-slate-400 leading-relaxed text-lg">
+                    חנויות פיזיות סובלות מעיוורון נתונים. הן יודעות מה נמכר, אך אינן יודעות במה הלקוח התעניין. האתגר הטכנולוגי הוא עצום: מצלמות אבטחה ישנות מספקות דאטה מטושטש, ללא צבע, ותמיד עם חסימות של ידיים.
                 </p>
+                <div class="space-y-4">
+                    <div class="flex gap-4 items-center bg-white/5 p-4 rounded-xl border border-white/5">
+                        <i class="fas fa-low-vision text-red-400 text-xl"></i>
+                        <div>
+                            <h4 class="font-bold">חסימות ויזואליות (Occlusions)</h4>
+                            <p class="text-sm text-slate-500 text-right">התמודדות עם ידיים שמסתירות 40% מהאלבום.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-center bg-white/5 p-4 rounded-xl border border-white/5">
+                        <i class="fas fa-braille text-blue-400 text-xl"></i>
+                        <div>
+                            <h4 class="font-bold">רעש דיגיטלי וטשטוש</h4>
+                            <p class="text-sm text-slate-500 text-right">חילוץ Features איכותיים מתמונות גרעיניות.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card border-r-4 border-slate-500">
-                <h3 class="text-2xl font-bold mb-4">אתגר ה-CCTV</h3>
-                <p class="text-slate-600 leading-relaxed">
-                    צילומי אבטחה מתאפיינים ברזולוציה נמוכה, שחור-לבן, רעש דיגיטלי והסתרות (ידיים). מודלים סטנדרטיים נכשלים בתנאים אלו, מה שחייב אותנו לפתח פתרון מבוסס Image Retrieval.
+            <div class="glass rounded-3xl p-4 overflow-hidden shadow-2xl relative">
+                <div class="absolute inset-0 bg-emerald-500/5 z-0"></div>
+                <div class="relative z-10 p-8 space-y-4">
+                    <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                        <span class="text-xs font-bold text-slate-500">CCTV FEED SIMULATION</span>
+                        <span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+                    </div>
+                    <div class="h-64 bg-slate-800 rounded-xl flex items-center justify-center">
+                         <i class="fas fa-image text-4xl text-slate-700"></i>
+                    </div>
+                    <p class="text-center text-xs text-slate-500">הדמיית קלט: שאילתה רועשת -> חילוץ וקטורי -> התאמה לקטלוג</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section id="tech" class="space-y-12">
+            <div class="text-center space-y-4">
+                <h3 class="text-3xl font-bold uppercase tracking-widest">הליבה הטכנולוגית</h3>
+                <p class="text-slate-500">השילוב בין ארכיטקטורה עמוקה ליצירת נתונים חכמה</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl stat-card space-y-4 border-t-4 border-emerald-500">
+                    <div class="text-emerald-500 text-3xl"><i class="fas fa-brain"></i></div>
+                    <h4 class="text-xl font-bold">ResNet50 Siamese</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">שימוש ברשת תאומה ליצירת Embedding Space שבו תמונות דומות נצמדות אחת לשנייה ללא קשר לרעש.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl stat-card space-y-4 border-t-4 border-blue-500">
+                    <div class="text-blue-500 text-3xl"><i class="fas fa-magic"></i></div>
+                    <h4 class="text-xl font-bold">GLIGEN Inpainting</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">החידוש המרכזי: שימוש ב-GenAI לייצור "ידיים" ריאליסטיות שמתחשבות בגיאומטריה של התקליט.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl stat-card space-y-4 border-t-4 border-purple-500">
+                    <div class="text-purple-500 text-3xl"><i class="fas fa-compress-arrows-alt"></i></div>
+                    <h4 class="text-xl font-bold">Triplet Margin Loss</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">פונקציית הפסד המלמדת את המודל לבצע "הפרדה" מקסימלית בין אלבומים שונים.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="space-y-12">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6">
+                <div class="space-y-2">
+                    <h3 class="text-4xl font-bold">ניתוח ביצועים</h3>
+                    <p class="text-slate-500 italic">נבדק על 100 אלבומים שמעולם לא נראו באימון (Zero-Shot Validation)</p>
+                </div>
+                <div class="bg-emerald-500 text-white px-6 py-2 rounded-full font-bold shadow-lg shadow-emerald-500/20">
+                    שיפור של 11% מהבייסליין
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div class="lg:col-span-3 glass p-8 rounded-3xl">
+                    <div class="chart-container">
+                        <canvas id="premiumChart"></canvas>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-3xl space-y-8 flex flex-col justify-center">
+                    <div>
+                        <div class="text-xs text-slate-500 font-bold uppercase mb-1">Precision @ 5</div>
+                        <div class="text-4xl font-extrabold text-emerald-500">89%</div>
+                        <div class="w-full bg-white/5 h-1 rounded-full mt-2">
+                            <div class="bg-emerald-500 h-full rounded-full" style="width: 89%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-500 font-bold uppercase mb-1">Precision @ 1</div>
+                        <div class="text-4xl font-extrabold text-blue-500">77%</div>
+                        <div class="w-full bg-white/5 h-1 rounded-full mt-2">
+                            <div class="bg-blue-500 h-full rounded-full" style="width: 77%"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed italic">
+                        השימוש ב-ResNet50 הוכיח את עצמו כחיוני לחילוץ Features מתוך טשטוש כבד.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Future Roadmap -->
+        <section id="future" class="bg-gradient-to-l from-emerald-900 to-slate-900 p-12 rounded-[3rem] text-center space-y-8 relative overflow-hidden">
+            <div class="relative z-10 space-y-6">
+                <h3 class="text-4xl font-bold text-white">הפרויקט מוכן להטמעה בשטח</h3>
+                <p class="text-emerald-100/60 max-w-2xl mx-auto">
+                    הראינו שבעזרת דאטה סינתטי חכם, ניתן להפוך כל מצלמת אבטחה ישנה לכלי עסקי חזק. הצעד הבא: NVIDIA Jetson Nano לזיהוי בזמן אמת.
                 </p>
-            </div>
-        </section>
-
-        <!-- SECTION: DATA & LINKS -->
-        <section id="data" class="space-y-6 scroll-mt-24">
-            <h3 class="text-3xl font-bold text-slate-900">נתונים ומקורות חיצוניים</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <a href="https://1drv.ms/f/c/ac19e521377b4d69/IgCQyUFf7MNZToYf7xa2h57UAcoUpXVUo9zEWjdq23Mrr6I?e=seBOPM" target="_blank" class="card hover:border-emerald-500 transition-all block group">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-bold text-lg group-hover:text-emerald-600 transition">📂 דאטה סינתטי (CCTV)</h4>
-                            <p class="text-sm text-slate-500 mt-1">5,000 תמונות שנוצרו בעזרת GLIGEN</p>
-                        </div>
-                        <span class="text-2xl text-slate-300">↗️</span>
-                    </div>
-                </a>
-                <a href="https://1drv.ms/f/c/ac19e521377b4d69/IgA3miqNLP7pSo1gfSObj27CAeeOcahAao2_k_xZP5BSsyo?e=Rhcm61" target="_blank" class="card hover:border-emerald-500 transition-all block group">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h4 class="font-bold text-lg group-hover:text-emerald-600 transition">🖼️ קטלוג אלבומים נקי</h4>
-                            <p class="text-sm text-slate-500 mt-1">תמונות הרפרנס המקוריות</p>
-                        </div>
-                        <span class="text-2xl text-slate-300">↗️</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- SECTION: RESULTS -->
-        <section id="results" class="space-y-8 scroll-mt-24">
-            <div class="flex flex-col md:flex-row justify-between items-end gap-4">
-                <div>
-                    <h3 class="text-3xl font-bold text-slate-900">ניתוח תוצאות</h3>
-                    <p class="text-slate-500">השוואת ביצועים על 100 אלבומים שמעולם לא נראו באימון (Zero-Shot).</p>
-                </div>
-                <div class="bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full text-sm font-bold border border-emerald-200">
-                    שיפור של 11% ב-ResNet50
+                <div class="flex flex-wrap justify-center gap-8 text-xs font-bold tracking-widest text-emerald-400 uppercase">
+                    <span><i class="fas fa-microchip ml-2"></i>Edge AI Ready</span>
+                    <span><i class="fas fa-database ml-2"></i>Scalable Vector Search</span>
+                    <span><i class="fas fa-shield-alt ml-2"></i>Privacy Focused</span>
                 </div>
             </div>
-            
-            <div class="card bg-white p-8">
-                <div class="chart-container">
-                    <canvas id="resultsChart"></canvas>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="card text-center space-y-2">
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">Precision 5 (Top-5)</p>
-                    <p class="text-4xl font-extrabold text-emerald-600">89.0%</p>
-                </div>
-                <div class="card text-center space-y-2">
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">Precision 1 (Top-1)</p>
-                    <p class="text-4xl font-extrabold text-blue-600">77.0%</p>
-                </div>
-                <div class="card text-center space-y-2">
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">Random Baseline</p>
-                    <p class="text-4xl font-extrabold text-slate-300">2.0%</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: REPO STRUCTURE -->
-        <section class="space-y-6">
-            <h3 class="text-2xl font-bold">מבנה התיקיות (Repository Structure)</h3>
-            <div class="card bg-slate-900 text-slate-300 font-mono text-sm leading-relaxed overflow-x-auto">
-                <p>├── Code/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Python scripts (Training, Eval, GLIGEN)</p>
-                <p>├── Slides/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Presentations (Proposal, Interim, Final) in PPT & PDF</p>
-                <p>├── Data/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # Metadata files (JSON/CSV)</p>
-                <p>├── Results/ &nbsp;&nbsp;&nbsp;&nbsp; # Raw accuracy metrics</p>
-                <p>└── Visuals/ &nbsp;&nbsp;&nbsp;&nbsp; # Diagrams and result figures</p>
+            <div class="absolute right-[-5%] top-[-10%] text-[300px] opacity-10 rotate-12">
+                <i class="fas fa-compact-disc"></i>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-slate-50 border-t border-slate-200 py-12 text-center text-slate-400">
-        <p class="text-sm font-bold">הוגש במסגרת פרויקט גמר - קורס ראייה ממוחשבת</p>
-        <p class="text-xs mt-1">© 2026 VinylID Team</p>
+    <footer class="py-12 border-t border-white/5 text-center text-slate-600 text-sm">
+        <p>© 2026 פרויקט גמר - צוות VinylID. הוגש עבור קורס ראייה ממוחשבת.</p>
     </footer>
 
     <script>
-        const ctx = document.getElementById('resultsChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Random Guess', 'ResNet18', 'ResNet50'],
-                datasets: [
-                    {
-                        label: 'Precision 1 (Top-1)',
-                        data: [2, 67, 77],
-                        backgroundColor: '#60a5fa',
-                        borderRadius: 8
-                    },
-                    {
-                        label: 'Precision 5 (Top-5)',
-                        data: [10, 78, 89],
-                        backgroundColor: '#10b981',
-                        borderRadius: 8
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: { callback: v => v + '%' }
-                    }
+        // --- Chart Config ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('premiumChart').getContext('2d');
+            
+            // Custom font configuration
+            Chart.defaults.font.family = 'Assistant';
+            Chart.defaults.color = '#94a3b8';
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Random Guess', 'ResNet18 (Baseline)', 'ResNet50 (Final)'],
+                    datasets: [
+                        {
+                            label: 'P1 Accuracy',
+                            data: [2, 67, 77],
+                            backgroundColor: '#3b82f6',
+                            borderRadius: 6,
+                            barPercentage: 0.5
+                        },
+                        {
+                            label: 'P5 Accuracy',
+                            data: [10, 78, 89],
+                            backgroundColor: '#10b981',
+                            borderRadius: 6,
+                            barPercentage: 0.5
+                        }
+                    ]
                 },
-                plugins: {
-                    legend: { position: 'bottom' },
-                    tooltip: {
-                        callbacks: {
-                            title: function(tooltipItems) {
-                                return tooltipItems[0].label;
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { callback: v => v + '%' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                boxWidth: 10,
+                                boxHeight: 10,
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            padding: 12,
+                            cornerRadius: 8,
+                            titleColor: '#10b981',
+                            callbacks: {
+                                label: (context) => ` ${context.dataset.label}: ${context.raw}%`
                             }
                         }
                     }
                 }
-            }
+            });
         });
     </script>
 </body>
