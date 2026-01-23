@@ -1,0 +1,4 @@
+Model,P1 Accuracy,P5 Accuracy,Notes
+Random Guess,2.0,10.0,Statistical Baseline
+ResNet18 (Baseline),67.0,78.0,Standard Siamese
+ResNet50 (Final),77.0,89.0,Final Robust Model
