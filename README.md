@@ -14,7 +14,7 @@ Retail stores suffer from a significant **"Intent Gap"**: while Point-of-Sale (P
 ---
 
 ## 🚀 Key Achievements
-* **89% Top-5 Accuracy** on completely **unseen** album covers (Zero-Shot setting).
+* **89% Top-5 Accuracy** on completely **unseen** photo covers .
 * **77% Top-1 Accuracy**, outperforming random guess (2%) by a factor of 38.
 * Successfully bridged the domain gap using **Synthetic Data Generation (GLIGEN)**.
 
