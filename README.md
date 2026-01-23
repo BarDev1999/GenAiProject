@@ -59,19 +59,9 @@ We created a **Synthetic-to-Real Pipeline** to overcome data scarcity:
 ---
 
 ## 👥 Team
-* **Student Name 1**
-* **Student Name 2**
+* **Arbel Koren**
+* **Bar Sberro**
+* **Noy Leibovitch**
 
 *Submitted as part of the Computer Vision Final Project, 2026.*
-
-**מה עשינו בסיכום?**
-1.  איחדנו את כל הנתונים, הגרפים והקישורים.
-2.  הוספנו את הקישורים החדשים ל-OneDrive בפרק ייעודי ב-README ובדשבורד.
-3.  שמרנו על מבנה התיקיות שהמרצה ביקש.
-
-**עכשיו נשאר לך רק:**
-* להחליף את השמות שלכם ב-Team.
-* להעלות את קובץ ה-`README_Dashboard.html` ל-Git שלך (זה נראה מעולה ב-Portfolio).
-* לעדכן את ה-`README.md`.
-
-סיימנו! הפרויקט שלך מוכן להגשה ברמה הכי גבוהה שיש. המון בהצלחה!
+!
