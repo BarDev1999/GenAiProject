@@ -1,0 +1,30 @@
+{
+"project_name": "Vinyl Album Identification from CCTV",
+"experiment_date": "2025-01-20",
+"test_set_size": 100,
+"metrics": ["Precision1 (P1)", "Precision5 (P5)"],
+"data": [
+{
+"model": "Random Guess",
+"p1_accuracy": 2.0,
+"p5_accuracy": 10.0,
+"notes": "Base statistical probability"
+},
+{
+"model": "ResNet18 (Baseline)",
+"p1_accuracy": 67.0,
+"p5_accuracy": 78.0,
+"notes": "Pretrained backbone with triplet loss"
+},
+{
+"model": "ResNet50 (Final)",
+"p1_accuracy": 77.0,
+"p5_accuracy": 89.0,
+"notes": "Superior feature extraction for noisy inputs"
+}
+],
+"conclusions": {
+"delta_improvement": "10-11% increase using deeper ResNet50 architecture",
+"generalization": "Successful Zero-Shot validation on unseen covers"
+}
+}
